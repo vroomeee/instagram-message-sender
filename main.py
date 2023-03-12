@@ -1,16 +1,23 @@
-# This is a sample Python script.
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.chrome.options import Options
+from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.by import By
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+options = Options()
 
+options.add_experimental_option("detach", True)
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
 
-
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+driver.get("https://www.instagram.com/")
+driver.find_element("xpath", '//*[@id="loginForm"]/div/div[1]/div/label/input').send_keys("vroomeee")
+driver.find_element("xpath", '//*[@id="loginForm"]/div/div[2]/div/label/input').send_keys("finfin09")
+driver.find_element("xpath", '//*[@id="loginForm"]/div/div[3]/button').click()
+try:
+    driver.find_element("xpath", '//*[@id="mount_0_0_as"]/div/div/div[2]/div/div/div[1]/div/div[2]/div/div/div/div/div[2]/div/div/div[3]/button[2]').click()
+except:
+    print("fail-1")
+driver.find_element("xpath", '//*[@id="mount_0_0_Ri"]/div/div/div[1]/div/div/div/div[1]/div[1]/div[1]/div/div/div/div/div[2]/div[5]/div/a/div')
+driver.find_element("xpath", '//*[@id="mount_0_0_as"]/div/div/div[1]/div/div/div/div[1]/div[1]/div/div[2]/div/section/div/div/div/div/div[1]/div[2]/div/div/div/div/div[5]/a/div[1]').click()
